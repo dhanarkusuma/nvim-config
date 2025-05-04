@@ -3,6 +3,6 @@ dapGo.setup()
 
 local map = vim.keymap.set
 
-map("n", "<leader>drt", function()
+map("n", "<leader>r", function()
   require("dap-go").debug_test()
 end, { desc = "Run DAP Go test method" })

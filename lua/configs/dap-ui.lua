@@ -3,7 +3,7 @@ local dapui = require "dapui"
 dapui.setup()
 
 local map = vim.keymap.set
-map("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
+map("n", "<leader>d", "<cmd>lua require('dapui').toggle()<CR>", { desc = "Toggle DAP UI" })
 
 dap.listeners.after.attach.dapui_config = function()
   dapui.open()
