@@ -13,7 +13,7 @@ local options = {
     html = { "prettier" },
     css = { "prettier" },
     markdown = { "prettier" },
-    rust = {}, -- penting untuk cegah error di Rust
+    rust = { "rustfmt" },
   },
 
   formatters = {

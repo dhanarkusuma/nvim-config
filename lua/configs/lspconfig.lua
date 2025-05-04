@@ -9,7 +9,7 @@ lspconfig.servers = {
   "pyright",
 }
 
-local servers = { "html", "cssls", "ts_ls", "prismals" }
+local servers = { "html", "cssls", "ts_ls", "prismals", "rust_analyzer" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config

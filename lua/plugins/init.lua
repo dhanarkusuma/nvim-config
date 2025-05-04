@@ -124,12 +124,4 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
-  {
-    "mrcjkb/rustaceanvim",
-    version = "^6",
-    lazy = false,
-    config = function()
-      require "configs.rustaceanvim"
-    end,
-  },
 }
