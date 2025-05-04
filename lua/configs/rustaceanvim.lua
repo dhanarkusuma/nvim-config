@@ -14,6 +14,10 @@ vim.g.rustaceanvim = {
       end, { buffer = bufnr })
     end,
 
+    capabilities = {
+      semanticTokensProvider = nil,
+    },
+
     default_settings = {
       ["rust-analyzer"] = {
         cargo = {

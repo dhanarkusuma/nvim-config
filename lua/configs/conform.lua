@@ -13,6 +13,7 @@ local options = {
     html = { "prettier" },
     css = { "prettier" },
     markdown = { "prettier" },
+    rust = {}, -- penting untuk cegah error di Rust
   },
 
   formatters = {
@@ -29,8 +30,8 @@ local options = {
   },
 
   format_on_save = {
+    lsp_fallback = false,
     timeout_ms = 500,
-    lsp_fallback = true,
   },
 }
 

@@ -22,7 +22,7 @@ local options = {
     "typescript",
   },
 
-  hightlight = {
+  highlight = {
     enable = true,
     use_languagetree = true,
   },
