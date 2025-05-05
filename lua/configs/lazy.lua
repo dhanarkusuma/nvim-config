@@ -44,4 +44,9 @@ return {
       },
     },
   },
+
+  profiling = {
+    loader = true,
+    require = true,
+  }
 }

@@ -13,7 +13,7 @@ local options = {
     html = { "prettier" },
     css = { "prettier" },
     markdown = { "prettier" },
-    rust = { "rustfmt" },
+    rust = {"rustfmt"},
   },
 
   formatters = {
@@ -28,11 +28,22 @@ local options = {
       },
     },
   },
-
   format_on_save = {
-    lsp_fallback = false,
-    timeout_ms = 500,
+    lsp_fallback = true,
+    timeout_ms = 500
   },
+
+  -- format_on_save = function(bufnr)
+  --   local ft = vim.bo[bufnr].filetype
+  --   if ft == "rust" then
+  --     vim.notify("[Conform] SKIP rust formatting for bufnr: " .. bufnr)
+  --     return
+  --   end
+  --   return {
+  --     lsp_fallback = true,
+  --     timeout_ms = 500,
+  --   }
+  -- end
 }
 
 require("conform").setup(options)

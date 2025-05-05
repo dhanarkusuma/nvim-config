@@ -14,7 +14,6 @@ local options = {
     "printf",
     "prisma",
     "python",
-    "rust",
     "toml",
     "vim",
     "vimdoc",

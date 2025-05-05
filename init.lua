@@ -32,7 +32,10 @@ dofile(vim.g.base46_cache .. "statusline")
 vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 require "options"
 require "nvchad.autocmds"
+require "autocmds"
 
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.opt.runtimepath:prepend(vim.fn.stdpath("config"))
