@@ -56,6 +56,7 @@ return {
     "mfussenegger/nvim-dap",
     config = function()
       require "configs.dap"
+      require "configs.rust.codelldb"
     end,
   },
   {
@@ -63,6 +64,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    lazy = false,
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
@@ -79,7 +81,7 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      require "configs.dap-python"
+      require "configs.python.dap-python"
     end,
   },
   {
@@ -90,7 +92,7 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      require "configs.dap-go"
+      require "configs.go.dap-go"
     end,
   },
   {

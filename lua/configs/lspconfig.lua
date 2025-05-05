@@ -7,6 +7,7 @@ lspconfig.servers = {
   "lua_ls",
   "gopls",
   "pyright",
+  "rust_analyzer",
 }
 
 local servers = { "html", "cssls", "ts_ls", "prismals", "rust_analyzer" }
@@ -95,6 +96,20 @@ lspconfig.lua_ls.setup {
         },
         maxPreload = 100000,
         preloadFileSize = 10000,
+      },
+    },
+  },
+}
+
+lspconfig.rust_analyzer.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        allFeatures = true,
       },
     },
   },
