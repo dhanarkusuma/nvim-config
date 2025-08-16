@@ -1,7 +1,7 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    go = { "gofumpt", "golines" },
+    go = { "gofumpt" },
     gomod = { "gofumpt", "goimports-reviser" },
     gowork = { "gofumpt", "goimports-reviser" },
     gotmpl = { "gofumpt", "goimports-reviser" },

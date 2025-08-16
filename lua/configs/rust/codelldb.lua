@@ -1,10 +1,26 @@
 local dap = require "dap"
-local mason_registry = require "mason-registry"
 
--- Ambil path dari mason
-local codelldb = mason_registry.get_package "codelldb"
-local extension_path = codelldb:get_install_path() .. "/extension/"
-local codelldb_path = extension_path .. "adapter/codelldb"
+-- Check if codelldb is installed
+local mason_registry = require "mason-registry"
+if not mason_registry.is_installed "codelldb" then
+  vim.notify("codelldb is not installed. Please install it via Mason.", vim.log.levels.ERROR)
+  return
+end
+
+-- Get path from mason - manual path construction (most reliable)
+local mason_packages_path = vim.fn.stdpath "data" .. "/mason/packages"
+local codelldb_path = mason_packages_path .. "/codelldb/extension/adapter/codelldb"
+
+-- For Windows, add .exe extension
+if vim.fn.has "win32" == 1 then
+  codelldb_path = codelldb_path .. ".exe"
+end
+
+-- Verify the path exists
+if vim.fn.executable(codelldb_path) == 0 then
+  vim.notify("CodeLLDB executable not found at: " .. codelldb_path, vim.log.levels.ERROR)
+  return
+end
 
 -- Adapter DAP
 dap.adapters.codelldb = {
