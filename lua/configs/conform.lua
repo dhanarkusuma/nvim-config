@@ -1,7 +1,9 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
+    -- go = { "gofumpt", "golines" },
     go = { "gofumpt" },
+    -- go = {},
     gomod = { "gofumpt", "goimports-reviser" },
     gowork = { "gofumpt", "goimports-reviser" },
     gotmpl = { "gofumpt", "goimports-reviser" },
@@ -17,9 +19,9 @@ local options = {
   },
 
   formatters = {
-    golines = {
-      prepend_args = { "--max-len=120" },
-    },
+    -- golines = {
+    --   prepend_args = { "--max-len=120" },
+    -- },
     black = {
       prepend_args = {
         "--fast",

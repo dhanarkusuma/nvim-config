@@ -58,18 +58,25 @@ lspconfig.gopls.setup {
 
 lspconfig.pyright.setup {
   on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
+  on_init = function(client)
+    client.config.settings.python.pythonPath = vim.fn.getcwd() .. "/.venv/bin/python"
+    nvlsp.on_init(client)
+  end,
   capabilities = nvlsp.capabilities,
-
+  filetypes = { "python" },
   settings = {
     python = {
+      pythonPath = vim.fn.getcwd() .. "/.venv/bin/python",
       analysis = {
         typeCheckingMode = "off", -- Disable type checking diagnostics
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
+        diagnosticSeverityOverrides = {
+          reportMissingTypeStubs = "none", -- <— matiin total
+          reportMissingModuleSource = "none", -- <— matiin total
+          reportMissingImports = "none", -- <— benerin typo (MIssing -> Missing)
+        },
       },
-      venvPath = vim.fn.getcwd(),
-      pythonPath = vim.fn.getcwd() .. "/.venv/bin/python3",
     },
   },
 }

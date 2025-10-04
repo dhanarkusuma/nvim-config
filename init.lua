@@ -36,3 +36,18 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Set Python 3 provider to use your project's venv
+vim.g.python3_host_prog = vim.fn.expand "~/.venv/bin/python3" -- or your global Python
+
+-- OR dynamically detect project venv:
+local function get_python_path()
+  local cwd = vim.fn.getcwd()
+  local venv_python = cwd .. "/.venv/bin/python"
+  if vim.fn.executable(venv_python) == 1 then
+    return venv_python
+  end
+  return "python3" -- fallback to system Python
+end
+
+vim.g.python3_host_prog = get_python_path()
