@@ -1,28 +1,19 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-
-lspconfig.servers = {
-  "lua_ls",
-  "gopls",
-  "pyright",
-  "rust_analyzer",
-}
-
 local servers = { "html", "cssls", "ts_ls", "prismals", "rust_analyzer" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-  }
+  })
 end
 
-lspconfig.eslint.setup {
+vim.lsp.config("eslint", {
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -31,9 +22,11 @@ lspconfig.eslint.setup {
   end,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
-}
+})
 
-lspconfig.gopls.setup {
+local util = require "lspconfig.util"
+
+vim.lsp.config("gopls", {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
@@ -43,7 +36,7 @@ lspconfig.gopls.setup {
   capabilities = nvlsp.capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
   settings = {
     gopls = {
       analyses = {
@@ -54,9 +47,9 @@ lspconfig.gopls.setup {
       staticcheck = true,
     },
   },
-}
+})
 
-lspconfig.pyright.setup {
+vim.lsp.config("pyright", {
   on_attach = nvlsp.on_attach,
   on_init = function(client)
     client.config.settings.python.pythonPath = vim.fn.getcwd() .. "/.venv/bin/python"
@@ -79,10 +72,10 @@ lspconfig.pyright.setup {
       },
     },
   },
-}
+})
 
 -- configuring single server, example: typescript
-lspconfig.lua_ls.setup {
+vim.lsp.config("lua_ls", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -106,9 +99,9 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
   on_attach = nvlsp.on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
@@ -120,4 +113,4 @@ lspconfig.rust_analyzer.setup {
       },
     },
   },
-}
+})
